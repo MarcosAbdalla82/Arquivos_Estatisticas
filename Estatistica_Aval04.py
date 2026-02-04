@@ -86,8 +86,16 @@ def le_avaliacoes_por_periodo(inicio, fim):
             "nota_p4",
             "nota_p5"
         FROM "avaliacao"
-        WHERE to_timestamp("data_hora", 'DD/MM/YYYY - HH24:MI')
-              BETWEEN %s AND %s
+        WHERE
+            CASE
+                -- ISO format: 2026-01-28 21:59:00
+                WHEN "data_hora" ~ '^\d{4}-\d{2}-\d{2}'
+                THEN "data_hora"::timestamp
+
+                -- Brazilian format: 28/01/2026 - 21:59
+                ELSE to_timestamp("data_hora", 'DD/MM/YYYY - HH24:MI')
+            END
+            BETWEEN %s AND %s
     """
 
     return pd.read_sql_query(
@@ -239,6 +247,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
