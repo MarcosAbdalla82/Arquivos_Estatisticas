@@ -18,11 +18,11 @@ st.set_page_config(
 
 conexao = psycopg2.connect(
     host=st.secrets["db"]["host"],
-    port=st.secrets["db"]["port"],
-    dbname=st.secrets["db"]["name"],
+    port=6543,  
+    database=st.secrets["db"]["name"],
     user=st.secrets["db"]["user"],
     password=st.secrets["db"]["password"],
-    sslmode="require",
+    sslmode="require"
 )
 
 # ---------------- BACKGROUND IMAGE ---------------- #
@@ -233,3 +233,4 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
