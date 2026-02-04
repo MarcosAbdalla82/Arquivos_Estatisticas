@@ -86,7 +86,8 @@ def le_avaliacoes_por_periodo(inicio, fim):
             nota_p4,
             nota_p5
         FROM avaliacao
-        WHERE CAST(data_hora AS TIMESTAMP) BETWEEN %s AND %s
+        WHERE to_timestamp(data_hora, 'DD/MM/YYYY - HH24:MI')
+      BETWEEN %s AND %s
     """
 
     return pd.read_sql_query(
@@ -238,6 +239,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
