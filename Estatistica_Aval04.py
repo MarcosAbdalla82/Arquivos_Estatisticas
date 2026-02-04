@@ -78,11 +78,6 @@ def le_avaliacao_por_nome(nome):
     return pd.read_sql_query(query, conexao, params=(nome,))
 
 def le_avaliacoes_por_periodo(inicio, fim):
-    """
-    inicio and fim must be strings or datetime objects:
-    'YYYY-MM-DD HH:MM'
-    """
-
     query = """
         SELECT 
             nota_p1,
@@ -90,8 +85,8 @@ def le_avaliacoes_por_periodo(inicio, fim):
             nota_p3,
             nota_p4,
             nota_p5
-        FROM Avaliacao
-        WHERE data_hora BETWEEN %s AND %s
+        FROM avaliacao
+        WHERE CAST(data_hora AS TIMESTAMP) BETWEEN %s AND %s
     """
 
     return pd.read_sql_query(
@@ -99,7 +94,6 @@ def le_avaliacoes_por_periodo(inicio, fim):
         conexao,
         params=(inicio, fim)
     )
-
 
 # ---------------- UI ---------------- #
 
@@ -244,6 +238,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
