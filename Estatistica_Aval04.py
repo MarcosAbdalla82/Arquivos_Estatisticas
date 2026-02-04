@@ -85,13 +85,13 @@ def le_avaliacoes_por_periodo(inicio, fim):
 
     query = """
         SELECT 
-            Nota_P1,
-            Nota_P2,
-            Nota_P3,
-            Nota_P4,
-            Nota_P5
+            nota_p1,
+            nota_p2,
+            nota_p3,
+            nota_p4,
+            nota_p5
         FROM Avaliacao
-        WHERE Data_Hora BETWEEN %s AND %s
+        WHERE data_hora BETWEEN %s AND %s
     """
 
     return pd.read_sql_query(
@@ -244,5 +244,6 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
