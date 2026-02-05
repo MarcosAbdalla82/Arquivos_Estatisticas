@@ -84,7 +84,8 @@ def le_avaliacoes_por_periodo(inicio, fim):
             "nota_p2",
             "nota_p3",
             "nota_p4",
-            "nota_p5"
+            "nota_p5",
+            "data_hora"
         FROM "avaliacao"
         WHERE
             CASE
@@ -247,6 +248,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
