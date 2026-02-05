@@ -135,7 +135,7 @@ with aba1:
     notas = le_avaliacoes_por_periodo(inicio_iso, fim_iso)
     notas_fun = notas[["nota_p1", "nota_p2", "nota_p3"]]
 
-    st.dataframe(notas_fun)
+    st.dataframe(notas)
 
     MED_notas_Fun = notas_fun.mean().mean() if not notas_fun.empty else 0
 
@@ -247,6 +247,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
