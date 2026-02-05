@@ -126,7 +126,8 @@ with col2:
     data_fim = st.date_input("Data final", value=datetime.today().date())
 
 inicio_iso = data_inicio.strftime("%Y-%m-%d %H:%M")
-fim_iso = data_fim.strftime("%Y-%m-%d %H:%M")
+#fim_iso = data_fim.strftime("%Y-%m-%d %H:%M")
+fim_iso = (data_fim + timedelta(days=1)).strftime("%Y-%m-%d %H:%M")
 
 # ================= ABA 1 ================= #
 
@@ -248,6 +249,7 @@ with aba5:
     st.metric("ISCF", f"{ISCF:.2f}%")
     st.metric("ISCS", f"{ISCS:.2f}%")
     st.metric("PLP", f"{PLP:.2f}%")
+
 
 
 
